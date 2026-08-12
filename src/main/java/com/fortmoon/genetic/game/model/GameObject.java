@@ -124,13 +124,6 @@ public abstract class GameObject extends Rectangle implements Runnable {
 	}
 
 		
-	/**
-	 * This method gets called when the class is cleaned up. You can ignore it, 
-	 * it does nothing and doesn't really need to be here.
-	 */
-	public void finalize() {
-		//System.out.println(this.getClass().getSimpleName() +  " Finalized.");
-	}
 	
 }
 
