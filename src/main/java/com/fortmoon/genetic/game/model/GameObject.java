@@ -8,6 +8,9 @@
 
 package com.fortmoon.genetic.game.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.File;
@@ -27,6 +30,7 @@ import javax.imageio.ImageIO;
  * Mar 8, 2011 10:24:38 PM
  */
 public abstract class GameObject extends Rectangle implements Runnable {
+    private static final Logger LOG = Logger.getLogger(GameObject.class.getName());
 	private static final long serialVersionUID = 1L;
 	protected Image image;
 	protected boolean alive = false; // This is set to false when the object is destroyed
@@ -41,18 +45,18 @@ public abstract class GameObject extends Rectangle implements Runnable {
 	
 	public void setImage(String filename) {
 		try {
-			System.out.println("loading image: " + filename);
+			LOG.info("loading image: " + filename);
 			InputStream stream = getClass().getClassLoader().getResourceAsStream("images/"+filename);
 			Image img = ImageIO.read(stream);
 			if (img == null)
-				System.out.println("Defender image is null");
+				LOG.info("Defender image is null");
 
 			image = img.getScaledInstance(80, -1, Image.SCALE_AREA_AVERAGING);
 			width = image.getWidth(null);
 			height = image.getHeight(null);
 		} catch (Exception e) {
-			System.out.println("Exception loading file " + filename + ": " + e);
-			e.printStackTrace();
+			LOG.info("Exception loading file " + filename + ": " + e);
+			LOG.log(Level.WARNING, "error", e);
 		}
 	}
 	
@@ -94,7 +98,7 @@ public abstract class GameObject extends Rectangle implements Runnable {
 	
 	public void start() {
 		if(this.alive) {
-			System.out.println("Error: trying to start an object that is already alive.");
+			LOG.info("Error: trying to start an object that is already alive.");
 			return;
 		}
 		alive = true;

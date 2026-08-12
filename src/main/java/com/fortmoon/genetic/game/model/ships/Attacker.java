@@ -8,6 +8,9 @@
 
 package com.fortmoon.genetic.game.model.ships;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import java.awt.Color;
 
 import com.fortmoon.genetic.game.model.bullets.Bullet;
@@ -20,6 +23,7 @@ import com.fortmoon.genetic.game.model.bullets.Bullet.Direction;
  * Mar 1, 2011 11:01:34 AM
  */
 public class Attacker extends Ship {
+    private static final Logger LOG = Logger.getLogger(Attacker.class.getName());
 	private static final long serialVersionUID = 1L;
 	private Attacker instance;
 	private AttackerType type;
@@ -64,7 +68,7 @@ public class Attacker extends Ship {
 			case RANDOM: execute(new Instruction(Action.values()[random.nextInt(Action.values().length - 1)]));
 				// Use length - 1 and keep RANDOM as last action so we don't randomly pick RANDOM over again.
 				break;
-			//default: System.out.println("Unrecognized action");
+			//default: LOG.info("Unrecognized action");
 		}
 	}
 	
@@ -73,7 +77,7 @@ public class Attacker extends Ship {
 		if(!alive) {
 			return;
 		}
-		System.out.println("Destroy: " + this.toString());
+		LOG.info("Destroy: " + this.toString());
 		super.destroy();
 		showExplosion();
 		Runnable r = new Runnable() {

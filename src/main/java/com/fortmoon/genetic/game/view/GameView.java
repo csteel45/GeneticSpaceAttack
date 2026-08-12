@@ -8,6 +8,9 @@
 
 package com.fortmoon.genetic.game.view;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -42,6 +45,7 @@ import com.fortmoon.genetic.game.model.stats.Stats;
  * Mar 1, 2011 10:40:54 AM
  */
 public class GameView extends Canvas {
+    private static final Logger LOG = Logger.getLogger(GameView.class.getName());
 	private static final long serialVersionUID = 1L;
 	private GraphicsDevice myDevice;
     private Window window;
@@ -77,15 +81,15 @@ public class GameView extends Canvas {
 		    }
 			DisplayMode mode = myDevice.getDisplayMode();
 			width = mode.getWidth();
-			System.out.println("Width = " + width);
+			LOG.info("Width = " + width);
 			height = mode.getHeight();
-			System.out.println("Height = " + height);
+			LOG.info("Height = " + height);
 			Screen.setWidth(width);
 			Screen.setHeight(height);
 		} 
 		catch (Exception e) {
 		    myDevice.setFullScreenWindow(null);
-			e.printStackTrace();
+			LOG.log(Level.WARNING, "error", e);
 			System.exit(0);
 		}
 	}
@@ -132,7 +136,7 @@ public class GameView extends Canvas {
 			}
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			LOG.log(Level.WARNING, "error", e);
 		}
 		finally {
 			stop  = true;
@@ -166,7 +170,7 @@ public class GameView extends Canvas {
 		if (window != null) {
 			BufferStrategy strategy = window.getBufferStrategy();
 			if (strategy != null) {
-				System.out.println("Showing strategy");
+				LOG.info("Showing strategy");
 				strategy.show();
 			}
 		}

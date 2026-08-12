@@ -1,5 +1,8 @@
 package com.fortmoon.genetic.game.model.ships.organic;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -12,6 +15,7 @@ import com.fortmoon.genetic.game.model.ships.Instruction;
  * @since Apr 5, 2011 3:40:52 PM
  */
 public class Population {
+    private static final Logger LOG = Logger.getLogger(Population.class.getName());
 	protected ArrayList<Chromosome> chromosomes;
 	protected Random random = new Random(System.currentTimeMillis());
 	protected float mutationRate = 0.4f;
@@ -39,13 +43,13 @@ public class Population {
 			// genes could be replicated all the way through the chromosome population.
 			Chromosome target = chromosomes.get(i);
 			if(DEBUG) {
-				System.out.println("Chromosome: " + target);
+				LOG.info("Chromosome: " + target);
 			}
 
 			// Start at a random gene in the chromosome
 			int geneIndex = random.nextInt(chromosome.size());
 			if(DEBUG)
-				System.out.println("geneIndex = " + geneIndex);
+				LOG.info("geneIndex = " + geneIndex);
 			// Copy a random number of genes, starting at the random index from one chromosome to the next.
 			if(target.size() <= geneIndex)
 				continue;
@@ -57,7 +61,7 @@ public class Population {
 				}
 			}
 			if(DEBUG) {
-				System.out.println("Crossed over chromosome: " + target);
+				LOG.info("Crossed over chromosome: " + target);
 			}
 			// Get the next chromosome and repeat the process.
 			chromosome = chromosomes.get(i);
@@ -77,7 +81,7 @@ public class Population {
 		int numMutations = (int)(chromosomes.size() * mutationRate);
 		int startingIndex = (int)(chromosomes.size() * .1);
 		if(DEBUG)
-			System.out.println("numMutations = " + numMutations + " startingIndex = " + startingIndex);
+			LOG.info("numMutations = " + numMutations + " startingIndex = " + startingIndex);
 
 		for(int i = 0; i < numMutations; i++) {
 			Chromosome c = chromosomes.get(startingIndex + random.nextInt(chromosomes.size() - startingIndex));
@@ -138,7 +142,7 @@ public class Population {
 			// Start again with a healthier (more fit) population.
 			c = this.chromosomes.get(0);
 			counter = 1;  //equivalent of setting counter = 0 and then incrementing.
-			System.out.println("STARTING NEW GENERATION");
+			LOG.info("STARTING NEW GENERATION");
 		}
 		c.setBirthTime();
 		c.setNumHits(0);

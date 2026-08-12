@@ -8,6 +8,9 @@
 
 package com.fortmoon.genetic.game.controller;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -24,6 +27,7 @@ import com.fortmoon.genetic.game.view.GameView;
  * Mar 7, 2011 2:23:26 PM
  */
 public class MoveKeyListener implements KeyListener, Runnable {
+    private static final Logger LOG = Logger.getLogger(MoveKeyListener.class.getName());
 	private Defender defender;
 	private boolean leftPressed = false;
 	private boolean rightPressed = false;
@@ -94,7 +98,7 @@ public class MoveKeyListener implements KeyListener, Runnable {
 			Thread.sleep(length);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.log(Level.WARNING, "error", e);
 		}
 	}
 
@@ -130,7 +134,7 @@ public class MoveKeyListener implements KeyListener, Runnable {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOG.log(Level.WARNING, "error", e);
 			}
 		}
 	}

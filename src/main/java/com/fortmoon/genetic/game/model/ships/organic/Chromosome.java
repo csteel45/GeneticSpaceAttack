@@ -8,6 +8,9 @@
 
 package com.fortmoon.genetic.game.model.ships.organic;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.fortmoon.genetic.game.model.ships.AttackerFactory;
 import com.fortmoon.genetic.game.model.ships.Instruction;
 import com.fortmoon.genetic.game.model.ships.InstructionSet;
@@ -19,6 +22,7 @@ import com.fortmoon.genetic.game.model.ships.InstructionSet;
  * Mar 10, 2011 11:25:15 PM
  */
 public class Chromosome extends InstructionSet implements Comparable<Chromosome> {
+    private static final Logger LOG = Logger.getLogger(Chromosome.class.getName());
 	private static final long serialVersionUID = 1L;
 	private static Integer counter = 0;
 	private int number = 0;
@@ -39,10 +43,10 @@ public class Chromosome extends InstructionSet implements Comparable<Chromosome>
 
 	public long calculateFitness() {
 		// Count every hit as an extra minute of life
-		System.out.println("CHROMOSOME " + this.number + " has this many hits: " + this.numHits);
+		LOG.info("CHROMOSOME " + this.number + " has this many hits: " + this.numHits);
 		fitness = Long.valueOf((getLifetime() + (numHits * 60)));
 		if(fitness.longValue() == 0l) {
-			System.out.println("0 Fitness: birth: " + this.birthTime + " death: " + this.deathTime + " hits: " + this.numHits);
+			LOG.info("0 Fitness: birth: " + this.birthTime + " death: " + this.deathTime + " hits: " + this.numHits);
 		}
 		return fitness.longValue();
 	}

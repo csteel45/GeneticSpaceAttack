@@ -8,6 +8,9 @@
 
 package com.fortmoon.genetic.game.model.bullets;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -17,6 +20,7 @@ import java.util.ArrayList;
  * Mar 7, 2011 11:08:30 PM
  */
 public class Bullets extends Thread implements Serializable, Runnable {
+    private static final Logger LOG = Logger.getLogger(Bullets.class.getName());
 	private static final long serialVersionUID = 1L;
 	private static ArrayList<Bullet> bullets;
 	private boolean stop = false;
@@ -50,7 +54,7 @@ public class Bullets extends Thread implements Serializable, Runnable {
 				Thread.sleep(30);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOG.log(Level.WARNING, "error", e);
 			}
 		}
 	}

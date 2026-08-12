@@ -8,6 +8,9 @@
 
 package com.fortmoon.genetic.game.model.ships;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import java.awt.Color;
 
 import com.fortmoon.genetic.game.model.bullets.Bullet;
@@ -21,6 +24,7 @@ import com.fortmoon.genetic.game.model.bullets.Bullet.Direction;
  *         Mar 1, 2011 11:01:34 AM
  */
 public class Defender extends Ship {
+    private static final Logger LOG = Logger.getLogger(Defender.class.getName());
 
 	private int maxShots = 5; // This is the max number of shots before a reload (clip size)
 	private int shots = maxShots; // This is the number of shots left. Start out with a max clip
@@ -45,7 +49,7 @@ public class Defender extends Ship {
 			}
 			sleep();
 		}
-		System.out.println("Destroyed.");
+		LOG.info("Destroyed.");
 		this.height = 0;
 		this.width = 0;
 	}

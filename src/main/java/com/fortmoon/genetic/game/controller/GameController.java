@@ -1,5 +1,8 @@
 package com.fortmoon.genetic.game.controller;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
@@ -14,6 +17,7 @@ import com.fortmoon.genetic.game.model.stats.Stats;
 import com.fortmoon.genetic.game.view.GameView;
 
 public class GameController implements Observer {
+    private static final Logger LOG = Logger.getLogger(GameController.class.getName());
 
 //	private GameModel model;
 	private GameView view;
@@ -29,7 +33,7 @@ public class GameController implements Observer {
 		this.view = view;
 //		model.addObserver(this);
 		Defender ship = new Defender(Screen.getWidth()/2, Screen.getHeight() - 106, "ship.gif");
-		System.out.println("Defender height = " + ship.getHeight());
+		LOG.info("Defender height = " + ship.getHeight());
 		keyListener = new MoveKeyListener(ship);
 	    view.addKeyListener(keyListener);
 	    ship.registerObserver(this);
@@ -79,11 +83,11 @@ public class GameController implements Observer {
 							if (random.nextBoolean()) {
 								attacker = AttackerFactory
 										.getAttacker(AttackerType.Programmed);
-								System.out.println("Programmed type");
+								LOG.info("Programmed type");
 							} else {
 								attacker = AttackerFactory
 										.getAttacker(AttackerType.Random);
-								System.out.println("Random type");
+								LOG.info("Random type");
 							}
 						}
 						attacker.registerObserver(this);

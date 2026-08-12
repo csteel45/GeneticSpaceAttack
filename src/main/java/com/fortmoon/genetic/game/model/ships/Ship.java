@@ -8,6 +8,9 @@
 
 package com.fortmoon.genetic.game.model.ships;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import java.util.ArrayList;
 
 import com.fortmoon.genetic.game.model.GameObject;
@@ -19,6 +22,7 @@ import com.fortmoon.genetic.game.model.GameObject;
  * @version 1.0
  */
 public abstract class Ship extends GameObject {
+    private static final Logger LOG = Logger.getLogger(Ship.class.getName());
 	protected InstructionSet instructions;
 	protected int maxShots = 5; 		// This is the max number of shots before a reload (clip size)
 	protected int shots = maxShots; 	// This is the number of shots left. Start out with a max clip
@@ -59,7 +63,7 @@ public abstract class Ship extends GameObject {
 			Thread.sleep(sleepTime);
 		} 
 		catch (InterruptedException e) {
-			//e.printStackTrace();
+			//LOG.log(Level.WARNING, "error", e);
 		}
 	}
 		

@@ -8,6 +8,9 @@
 
 package com.fortmoon.genetic.game.model.bullets;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import java.awt.Color;
 
 import com.fortmoon.genetic.game.model.GameObject;
@@ -24,6 +27,7 @@ import com.fortmoon.genetic.game.model.ships.Ship;
  * Mar 7, 2011 7:06:37 PM
  */
 public class Bullet extends GameObject {
+    private static final Logger LOG = Logger.getLogger(Bullet.class.getName());
 	public static int WIDTH = 4;
 	public static int HEIGHT = 16;
 	private int speed = 20;
@@ -105,8 +109,8 @@ public class Bullet extends GameObject {
 			super.destroy();
 		}
 		catch(Exception e) {
-			System.out.println("Exception destroyinbg bullet: " + e);
-			e.printStackTrace();
+			LOG.info("Exception destroyinbg bullet: " + e);
+			LOG.log(Level.WARNING, "error", e);
 		}
 		finally {
 			Bullets.getInstance().remove(this);
