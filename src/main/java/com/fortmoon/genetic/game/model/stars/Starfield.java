@@ -55,12 +55,10 @@ public class Starfield extends Thread implements Serializable, Runnable {
 	
 	// This creates the starfield in the background
 	public void initStars() {
-		//System.out.println("Stars size = " + stars.size());
 		for (int i = 0; i < numStars; i++) {
 			Star star = new Star(random.nextInt(width-1) + 1, random.nextInt(height-1) + 1, randomColor());
 			stars.add(star);
 		}
-		//System.out.println("Stars size = " + stars.size());
 	}
 	
 	public void moveStars() {

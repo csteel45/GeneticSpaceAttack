@@ -39,12 +39,10 @@ public class GameController implements Observer {
 	    attacker.registerObserver(this);
 	    Attackers.getInstance().add(attacker);
 	    attacker.start();
-	    //System.out.println("Started Attacker thread.");
 	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		//System.out.println("GameController.update called by: " + arg1.getClass().getName());
 		if (arg1 instanceof Defender) {
 			keyListener.removeDefender();
 //			Stats.getStats().setProgrammedScore(Stats.getStats().getProgrammedScore() + 1000);
@@ -57,7 +55,6 @@ public class GameController implements Observer {
 					catch (InterruptedException e) {
 					}
 					Defender ship = new Defender(Screen.getWidth() / 2, Screen.getHeight() - 106, "ship.gif");
-					//System.out.println("Defender height = " + ship.getHeight());
 					keyListener.addDefender(ship);
 					ship.registerObserver(instance);
 					ship.start();
@@ -72,13 +69,11 @@ public class GameController implements Observer {
 				if (numAttackers < 5) {
 					for (int i = 0; i < 2; i++) {
 
-						//System.out.println("newList = " + newList.toString());
 						// 50% Genetic, 25% Random, 25% Programmed.
 						//if (random.nextBoolean()) {
 						if (true) {
 							attacker = AttackerFactory
 									.getAttacker(AttackerType.Genetic);
-							//System.out.println("Genetic type");
 						} 
 						else {
 							if (random.nextBoolean()) {

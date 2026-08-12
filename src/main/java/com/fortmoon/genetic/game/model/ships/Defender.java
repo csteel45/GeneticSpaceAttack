@@ -69,7 +69,6 @@ public class Defender extends Ship {
 	}
 
 	public void setAutoPilot(boolean val) {
-		//System.out.println("Setting auto pilot to: " + val);
 		autoPilot = val;
 	}
 

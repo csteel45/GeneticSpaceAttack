@@ -72,7 +72,6 @@ public class GameView extends Canvas {
 		    if(myDevice.isFullScreenSupported()) {
 		    	myDevice.setFullScreenWindow(this.window);
 		    	//for(DisplayMode mode : myDevice.getDisplayModes()) {
-		    	//	System.out.println("Mode: " + mode.getWidth() + ":" + mode.getHeight() + ":" + mode.getBitDepth() + ":" + mode.getRefreshRate()); 
 		    	//}
 			    window = myDevice.getFullScreenWindow();
 		    }
@@ -123,7 +122,6 @@ public class GameView extends Canvas {
 				start = System.currentTimeMillis();
 				render();
 				long renderTime = System.currentTimeMillis() - start;
-//				System.out.println("Render time = " + renderTime);
 //				try {
 					// ~60 frames/second
 					Thread.sleep(renderTime < 15 ? 16 - renderTime : 0); 
@@ -134,7 +132,6 @@ public class GameView extends Canvas {
 			}
 		}
 		catch(Exception e) {
-			//System.out.println("Exception b: " + e);
 			e.printStackTrace();
 		}
 		finally {
@@ -233,7 +230,6 @@ public class GameView extends Canvas {
 
 	public void paintBullets(Graphics2D graphics) {
 		for(Bullet bullet : Bullets.getBullets()) {
-			//System.out.println("BULLET");
 			if(bullet != null) {
 				graphics.setColor(bullet.getColor());
 				graphics.fillRoundRect((int)bullet.getX(), (int)bullet.getY(), (int)bullet.getWidth(), (int)bullet.getHeight(), 2, 2); // Add random size to blink the stars	
@@ -242,7 +238,6 @@ public class GameView extends Canvas {
 	}
 	private void paintAttackers(Graphics2D graphics2) {
 		for(Attacker attacker : Attackers.getAttackerList()) {
-			//System.out.println("Painting attacker at: " + attacker.getX() + "," + attacker.getY());
 			paint(graphics, attacker.getImage(), (int)attacker.getX(), (int)attacker.getY()); // Add random size to blink the stars	
 		}
 	}

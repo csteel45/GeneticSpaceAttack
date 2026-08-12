@@ -107,10 +107,8 @@ public class AttackerFactory {
 			attacker = new Attacker(dx > swidth/2 ? dx - swidth/2 : dx + swidth/2, type);
 		}
 
-		//System.out.println("Created attacker number: " + attacker.getNumber());
 		
 		attacker.setInstructionSet(instructionSet);
-		//System.out.println("Return attacker with instruction set: " + instructionSet);
 		return attacker;
 	}
 }

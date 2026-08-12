@@ -41,11 +41,9 @@ public class MoveKeyListener implements KeyListener, Runnable {
 	
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		//System.out.println("Key pressed: " + arg0);
 		
 		// Escape will exit the game no matter what.
 		if(arg0.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			//System.out.println("Escape: ");
 			System.exit(0);
 		}
 
@@ -66,14 +64,12 @@ public class MoveKeyListener implements KeyListener, Runnable {
 			rightPressed = true;
 		}
 		if(arg0.getKeyCode() == KeyEvent.VK_SPACE) {
-			//System.out.println("Space: ");
 			if(spacePressed == true)
 				return;
 			spacePressed = true;
 			defender.fire();
 		}
 		if(arg0.getKeyCode() == KeyEvent.VK_A) {
-			//System.out.println("Autopilot swithed to: " + !defender.getAutoPilot());
 			defender.setAutoPilot(!defender.getAutoPilot());
 		}
 		
@@ -82,12 +78,10 @@ public class MoveKeyListener implements KeyListener, Runnable {
 	public void run() {
 		while(true) {
 			if (leftPressed) {
-				// System.out.println("LEFT: ");
 				if(defender != null)
 					defender.moveLeft();
 			}
 			if (rightPressed) {
-				// System.out.println("RIGHT: ");
 				if(defender != null)
 					defender.moveRight();
 			}
@@ -106,7 +100,6 @@ public class MoveKeyListener implements KeyListener, Runnable {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		//System.out.println("Key released: " + arg0);
 		if(arg0.getKeyCode() == KeyEvent.VK_LEFT)
 			leftPressed = false;
 		if(arg0.getKeyCode() == KeyEvent.VK_RIGHT)
@@ -117,7 +110,6 @@ public class MoveKeyListener implements KeyListener, Runnable {
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		//System.out.println("Key typed: " + arg0);
 	}
 
 	public void removeDefender() {

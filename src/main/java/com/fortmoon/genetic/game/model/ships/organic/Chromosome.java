@@ -99,7 +99,6 @@ public class Chromosome extends InstructionSet implements Comparable<Chromosome>
 	
 	public synchronized void setDeathTime() {
 		deathTime = System.currentTimeMillis();
-		//System.out.println("Chromosome.setDeathTime lifetime = " + this.getLifetime());
 	}
 	
 	public int getNumber() {

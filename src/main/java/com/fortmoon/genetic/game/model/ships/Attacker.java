@@ -40,17 +40,14 @@ public class Attacker extends Ship {
 	}
 
 	public void run() {
-		//System.out.println("Attacker run called for number: " + number);
 		while(alive) {
 			for(Instruction instruction : instructions) {
 				execute(instruction);
-				//System.out.println("executing");
 				sleep();
 				if(!alive)
 					break;
 			}
 		}
-		//System.out.println("Attacker run complete.");
 	}
 	
 	public void execute(Instruction instruction) {

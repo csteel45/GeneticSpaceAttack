@@ -50,7 +50,6 @@ public class Population {
 			if(target.size() <= geneIndex)
 				continue;
 			int randomInt = random.nextInt(target.size() - geneIndex);
-			//System.out.println("chromosomeSize = " + chromosome.size() + " targetSize = " + target.size());
 			for(int j = 0; j < randomInt; j++) {
 				if(geneIndex + j < chromosome.size()) {
 					Instruction gene = chromosome.get(geneIndex + j);
@@ -100,14 +99,12 @@ public class Population {
 	protected void sort() {
 		for(Chromosome c : chromosomes) {
 			c.calculateFitness();
-//			System.out.println("UnSorted chromosomes: " + c);
 		}
 
 		Collections.sort(chromosomes);
 		Collections.reverse(chromosomes);
 
 //		for(Chromosome c : chromosomes)
-//			System.out.println("Sorted chromosomes: " + c);
 	}
 
 

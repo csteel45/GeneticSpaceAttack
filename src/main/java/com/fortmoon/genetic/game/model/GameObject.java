@@ -46,7 +46,6 @@ public abstract class GameObject extends Rectangle implements Runnable {
 			Image img = ImageIO.read(stream);
 			if (img == null)
 				System.out.println("Defender image is null");
-			// System.out.println("Image = " + img.getWidth(null));
 
 			image = img.getScaledInstance(80, -1, Image.SCALE_AREA_AVERAGING);
 			width = image.getWidth(null);
@@ -65,7 +64,6 @@ public abstract class GameObject extends Rectangle implements Runnable {
 	}
 
 	public void moveLeft() {
-		// System.out.println("Moving Left");
 
 		// If we are at the left bound, moves us the right side
 		for (int i = 0; i < moveIncrement; i++) {
@@ -82,7 +80,6 @@ public abstract class GameObject extends Rectangle implements Runnable {
 
 	public void moveRight() {
 		// If we are at the left bound, move us to the left
-		//System.out.println("Move increment is: " + moveIncrement);
 		for (int i = 0; i < moveIncrement; i++) {
 			if (x >= Screen.getWidth() - width) {
 //			if (x >= Screen.getWidth()) {
@@ -120,7 +117,6 @@ public abstract class GameObject extends Rectangle implements Runnable {
 	
 	public void registerObserver(Observer observer) {
 		observable.addObserver(observer);
-		//System.out.println("Observers = " + observable.countObservers());
 	}
 
 		

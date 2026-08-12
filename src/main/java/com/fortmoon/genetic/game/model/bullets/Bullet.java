@@ -52,7 +52,6 @@ public class Bullet extends GameObject {
 			sleep();
 			move();
 		}
-		//System.out.println(" Bullet destroyed.");
 	}
 	
 	public void move() {
@@ -64,7 +63,6 @@ public class Bullet extends GameObject {
 		}
 		
 		if(getHit()) {
-			//System.out.println("HIT!");
 			ship.setNumHits(ship.getNumHits() + 1);
 			destroy();
 			return;
@@ -82,7 +80,6 @@ public class Bullet extends GameObject {
 //		if(ship == null)
 //			return false;
 		if(ship != null && ship.intersects(this)) {
-			//System.out.println("Destroyed ship.");
 			ship.destroy();
 			return true;
 		}
