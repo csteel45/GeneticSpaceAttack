@@ -14,17 +14,6 @@
     <buildNumber>${maven.build.timestamp}</buildNumber>
   </properties>
   <build>
-    <sourceDirectory>src/main/java</sourceDirectory>
-    <testSourceDirectory>src/main/test</testSourceDirectory>
-	<resources>
-		<resource>
-			<directory>src/main/resources</directory>
-			<excludes>
-				<exclude>**/*.java</exclude>
-				<exclude>doc/**</exclude>
-			</excludes>
-		</resource>
-	</resources>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
