@@ -13,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.lang.reflect.Field;
+
 import org.junit.jupiter.api.Test;
 
 class GeneticAlgorithmTest {
@@ -37,6 +39,26 @@ class GeneticAlgorithmTest {
         c.setNumHits(10);
         long high = c.calculateFitness();
         assertTrue(high > low, "more hits should yield higher fitness");
+    }
+
+    @Test
+    void fitnessMatchesDocumentedFormula() throws Exception {
+        // README: fitness is roughly `lifetime + (hits x 60)`. Pin birthTime/deathTime via
+        // reflection so getLifetime() resolves to a known value, then verify the exact formula.
+        Chromosome c = new Chromosome();
+        long knownLifetimeSeconds = 42L;
+        int knownHits = 3;
+
+        Field birthTime = Chromosome.class.getDeclaredField("birthTime");
+        birthTime.setAccessible(true);
+        Field deathTime = Chromosome.class.getDeclaredField("deathTime");
+        deathTime.setAccessible(true);
+        birthTime.setLong(c, 0L);
+        deathTime.setLong(c, knownLifetimeSeconds * 1000L);
+        c.setNumHits(knownHits);
+
+        long expectedFitness = knownLifetimeSeconds + (knownHits * 60);
+        assertEquals(expectedFitness, c.calculateFitness());
     }
 
     @Test
